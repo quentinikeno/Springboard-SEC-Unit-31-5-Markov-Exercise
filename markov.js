@@ -43,8 +43,8 @@ class MarkovMachine {
 		let text = [];
 		let chains = this.makeChains();
 		text.push(this.randElement(this.words));
-		for (let i = 0; i < numWords; i++) {
-			let nextWord = this.randElement(chains[text[i]]);
+		for (let i = 1; i < numWords; i++) {
+			let nextWord = this.randElement(chains[text[i - 1]]);
 			if (nextWord !== null) {
 				text.push(nextWord);
 			} else {
