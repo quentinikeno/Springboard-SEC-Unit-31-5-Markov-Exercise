@@ -24,7 +24,11 @@ class MarkovMachine {
 			}
 			nextWord =
 				index + 1 === this.words.length ? null : this.words[index + 1];
-			chains[word].push(nextWord);
+			// check if the next word is already in the array for "word"
+			let duplicate = chains[word].some((value) => value === nextWord);
+			if (!duplicate) {
+				chains[word].push(nextWord);
+			}
 		});
 		return chains;
 	}
