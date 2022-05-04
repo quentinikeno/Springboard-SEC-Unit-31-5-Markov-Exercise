@@ -15,4 +15,8 @@ describe("Test MarkovMachine class.", () => {
 		};
 		expect(mm.makeChains()).toEqual(chains);
 	});
+
+	test("makeText should return a string", () => {
+		expect(mm.makeText()).toEqual(expect.any(String));
+	});
 });
