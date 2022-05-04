@@ -34,9 +34,24 @@ class MarkovMachine {
 	}
 
 	/** return random text from chains */
+	randElement(array) {
+		return array[Math.floor(Math.random() * array.length)];
+	}
 
 	makeText(numWords = 100) {
 		// TODO
+		let text = [];
+		let chains = this.makeChains();
+		text.push(this.randElement(this.words));
+		for (let i = 0; i < numWords; i++) {
+			let nextWord = this.randElement(chains[text[i]]);
+			if (nextWord !== null) {
+				text.push(nextWord);
+			} else {
+				break;
+			}
+		}
+		return text.join(" ");
 	}
 }
 
