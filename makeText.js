@@ -11,7 +11,8 @@ function checkIfURL(string) {
 		url = new URL(string);
 		return true;
 	} catch (error) {
-		return false;
+		console.error("Can't read URL.", error);
+		process.exit(1);
 	}
 }
 
@@ -19,7 +20,7 @@ function readFile(filename) {
 	try {
 		return fs.readFileSync(filename, "utf8");
 	} catch (error) {
-		console.error(error);
+		console.error("There was an error reading the data.", error);
 		process.exit(1);
 	}
 }
@@ -29,7 +30,7 @@ async function getURL(url) {
 		const { data } = await axios.get(url);
 		return data;
 	} catch (error) {
-		console.error(error);
+		console.error("There was an error getting the data.", error);
 		process.exit(1);
 	}
 }
@@ -46,9 +47,6 @@ async function printText() {
 			let content = await getURL(path);
 			const mm = new MarkovMachine(content);
 			console.log(mm.makeText());
-		} else {
-			console.error("Can't read URL.");
-			process.exit(1);
 		}
 	} else {
 		console.error("Please specify the correct file type.");
