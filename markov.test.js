@@ -19,4 +19,10 @@ describe("Test MarkovMachine class.", () => {
 	test("makeText should return a string", () => {
 		expect(mm.makeText()).toEqual(expect.any(String));
 	});
+
+	test('makeText should return a string with the number of words less than or equal to the "numWords" parameter.', () => {
+		expect(mm.makeText(2).split(" ").length).toBeLessThanOrEqual(2);
+		expect(mm.makeText(5).split(" ").length).toBeLessThanOrEqual(5);
+		expect(mm.makeText(20).split(" ").length).toBeLessThanOrEqual(20);
+	});
 });
